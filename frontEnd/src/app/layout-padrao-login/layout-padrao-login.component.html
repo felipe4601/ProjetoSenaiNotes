@@ -1,0 +1,29 @@
+<main>
+    <section class="form-section">
+      <div class="title-wrapper">
+      <img src="logo-removebg-preview.png" alt="">
+      <h2 class="titulo">Senai Notes</h2>
+      </div>
+      <h2 class="subtitulo-1">Welcome to Note</h2>
+      <h2 class="subtitulo-2">{{ title }}</h2>
+      <ng-content></ng-content>
+      <div class="btn-wrapper">
+          <button
+            class="btn-primary"
+            (click)="submit()"
+            [disabled]="disablePrimaryBtn">{{ primaryBtnText }}</button>
+         <div class=divider>
+            <div></div>
+            <span>or</span>
+             <div></div>
+          </div>
+          <button class="btn-secondary" (click)="navigate()">{{ secondaryBtnText }}</button>
+      </div>
+
+    </section>
+    <section class="main-section">
+
+      <img src="logo-removebg-preview.png" alt="">
+      <h1>Senai Notes</h1>
+    </section>
+</main>

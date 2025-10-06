@@ -1,38 +1,59 @@
+
 import { Component } from '@angular/core';
-import { FormGroup, FormsModule, ReactiveFormsModule, Validators , FormBuilder} from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule, Validators , FormBuilder, FormControl} from '@angular/forms';
 import { OnInit } from '@angular/core';
+import { LayoutPadraoLoginComponent } from '../../layout-padrao-login/layout-padrao-login.component';
+import { PrimaryInputComponent } from '../../componentes/primaryInput/primaryInput.component';
+import { Router } from '@angular/router';
+
+import { ToastrService } from 'ngx-toastr';
+import { LoginService } from '../../services/login/login.service';
+
+
+interface LoginForm {
+  email: FormControl,
+  senha: FormControl,
+}
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, FormsModule],
+  imports: [ReactiveFormsModule, FormsModule, LayoutPadraoLoginComponent, PrimaryInputComponent],
+  providers: [
+    Login
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
-export class Login implements OnInit{
-  logotipo: string = 'logo.png';
-    loginForm!: FormGroup;
-    senhaVisivel: boolean = false;
-    tipo: string[] = ['password', 'text'];
-    iconVisibilidadeSenha: string = 'visibility_24dp_E3E3E3_FILL0_wght400_GRAD0_opsz24.png'
-    // Método para alternar a visibilidade da senha
-    alternarVisibilidadeSenha(): void {
-      const anterior = this.tipo
-      for (let index = 0; index < this.tipo.length-1; index++) {
-        const anterior = this.tipo[index];
+export class Login {
+  loginForm!: FormGroup<LoginForm>;
 
+  constructor(
+    private router: Router,
+    private loginService : LoginService,
+    private toastrService: ToastrService
+  ){
+  this.loginForm = new FormGroup({
+    email: new FormControl('', [Validators.email, Validators.required],),
+    senha: new FormControl('', [Validators.required, Validators.minLength(6)],
+)
+  });
+  }
 
+  submit(){
+      this.loginService.login(
+        this.loginForm.value.email,
+        this.loginForm.value.senha,
+      ).subscribe({
+        next: () => {
+          this.toastrService.success("Login feito com sucesso");
+          this.router.navigate(['/home'])
+        },
+        error: () => this.toastrService.error("Erro inesperado! Tente novamente mais tarde")
 
-      }
-    }
+  })
+  }
 
-    constructor(
-      private formBuilder: FormBuilder
-    ){}
-    ngOnInit(): void{
-      this.loginForm = this.formBuilder.group({
-        email:['', Validators.required, Validators.email],
-        password:['', Validators.required, Validators]
-      })
-    }
-
+  navigate(){
+    this.router.navigate(['signup'])
+  }
 
 }

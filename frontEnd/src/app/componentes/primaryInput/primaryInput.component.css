@@ -1,0 +1,48 @@
+
+
+.input-wrapper{
+    color: rgb(7, 7, 7);
+    font-size: 16px;
+    text-align: start;
+
+
+
+    .input-content{
+      display: flex;
+      width: 100%;
+      margin-top: 5px;
+
+
+
+      .icon{
+        padding: 12px;
+        background-color: #335CFF;;
+        color: #335CFF;
+        border-radius: 0 8px 8px 0;
+
+        img{
+          height: 20px;
+
+        };
+
+      }
+
+    }
+    label {
+      color:rgb(0, 0, 0);
+
+    }
+
+    input {
+    border-radius: 8px 0 0 8px;
+
+
+    background-color: #efefef;
+    border: none;
+
+    padding: 12px 0 12px 20px;
+    width: 100%;
+}
+
+}
+

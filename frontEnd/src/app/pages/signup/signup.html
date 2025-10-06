@@ -1,0 +1,53 @@
+<app-layout-padrao-login
+  title="Signup in and start today!"
+  primaryBtnText="Signup now"
+  secondaryBtnText="Login now"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!signupForm.valid"
+
+>
+  <form [formGroup]="signupForm">
+    <app-primaryInput
+      formControlName="nome"
+        inputName="nome"
+        type="text"
+        label="Your name"
+        placeholder="Felipe Evaristo">
+        <img src="
+        email-icon.svg" alt="">
+      </app-primaryInput>
+
+      <app-primaryInput
+      formControlName="email"
+        inputName="email"
+        type="email"
+        label="Email Adress"
+        placeholder="email@exemplo.com">
+        <img src="
+        email-icon.svg" alt="">
+      </app-primaryInput>
+
+      <app-primaryInput
+      formControlName="senha"
+        inputName="password"
+        type="password"
+        label="Password"
+        placeholder="21212">
+        <img src="
+        password-icon.svg" alt="">
+      </app-primaryInput>
+
+      <app-primaryInput
+      formControlName="confirmaSenha"
+        inputName="confirmaSenha"
+        type="text"
+        label="Password"
+        placeholder="Confirm your password">
+        <img src="
+        password-icon.svg" alt="">
+      </app-primaryInput>
+
+  </form>
+
+</app-layout-padrao-login>

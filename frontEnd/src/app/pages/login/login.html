@@ -1,36 +1,33 @@
-<div class="page-container">
-  <div class="login-container">
-    <div class="title-box">
-      <img [src]="logotipo" alt="Logotipo Senai">
-      <p class="logo-title">Senai Notes</p>
-    </div>
-    <h1 class="title">Welcome to Note</h1>
-    <p class="subtitulo">Please log in to continue</p>
-    <form [formGroup]="loginForm">
+<app-layout-padrao-login
+  title="Login into your account"
+  primaryBtnText="Login now"
+  secondaryBtnText="Signup now"
+  (submit)="submit()"
+  (navigate)="navigate()"
+  [disablePrimaryBtn]="!loginForm.valid"
 
-          <div class="input-box">
-              <label for="email">Email Adress:</label>
-              <input type="email"
-              id="email"
-              placeholder="email@example.com"
-              formControlName="email">
-          </div>
-          <div class="input-box">
-          <label for="password">Password:</label>
-          <input id="password"
-           formControlName="password"
-           [type]="tipo">
-          <span class="password-toggle" (click)="alternarVisibilidadeSenha()">
-              <img [src]="iconVisibilidadeSenha" alt="Alterar Visibilidade senha">
-          </span>
-          </div>
-          <div class="button-box">
-          <button type="submit">Login</button>
-          <footer>
-            <p>No account yet? <a href="link">Sign Up</a></p>
-          </footer>
-          </div>
+>
+  <form [formGroup]="loginForm">
+      <app-primaryInput
+      formControlName="email"
+        inputName="email"
+        type="email"
+        label="Email Adress"
+        placeholder="email@exemplo.com">
+        <img src="
+        email-icon.svg" alt="">
+      </app-primaryInput>
 
-    </form>
-  </div>
-</div>
+      <app-primaryInput
+      formControlName="senha"
+        inputName="password"
+        type="password"
+        label="Password"
+        placeholder="21212">
+        <img src="
+        password-icon.svg" alt="">
+      </app-primaryInput>
+      <span>Forgot password?</span>
+  </form>
+
+</app-layout-padrao-login>
